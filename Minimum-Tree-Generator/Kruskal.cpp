@@ -13,7 +13,7 @@ struct Aresta {
 };
 
 // Comparador para ordenar as arestas pelo peso
-bool compararPesos(const Aresta &a, const Aresta &b) {
+bool compararPesos(const ::Aresta &a, const ::Aresta &b) {
     return a.peso < b.peso;
 }
 
