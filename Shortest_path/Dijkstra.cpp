@@ -34,32 +34,54 @@ void dijkstra(int src, const vector<vector<pair<int, int>>>& graph, vector<int>&
 }
 
 int main() {
-    int n, m;
-    cout << "Digite o número de vértices e arestas: ";
-    cin >> n >> m;
+    const int n = 19; // Número de vértices no grafo
 
+    // Representação do grafo como lista de adjacência
     vector<vector<pair<int, int>>> graph(n);
-    cout << "Digite as arestas (u v w), onde u e v são vértices e w é o peso:\n";
-    for (int i = 0; i < m; ++i) {
-        int u, v, w;
-        cin >> u >> v >> w;
-        graph[u].push_back({v, w});
-        graph[v].push_back({u, w}); // Se o grafo for direcionado, remova esta linha
+
+    // Matriz de adjacência representando o grafo (baseado na matriz fornecida)
+    vector<vector<int>> matriz = {
+        {0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {3, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 8, 0, 1, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 0, 0, 9, 7, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 10, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 9, 0, 0, 2, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 7, 0, 2, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 15, 0, 0, 0, 0, 0, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 7, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 1, 0, 0, 0, 0, 18},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 20},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 20, 0}
+    };
+
+    // Constrói o grafo com base na matriz
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (matriz[i][j] != 0) {
+                graph[i].push_back({j, matriz[i][j]});
+            }
+        }
     }
 
-    int src;
-    cout << "Digite o vértice de origem: ";
-    cin >> src;
+    int src = 0; // Vértice de origem (indexado como 0)
 
     vector<int> dist;
     dijkstra(src, graph, dist);
 
-    cout << "Distâncias mínimas a partir do vértice de origem " << src << ":\n";
+    cout << "Distâncias mínimas a partir do vértice de origem " << src + 1 << ":\n";
     for (int i = 0; i < n; ++i) {
         if (dist[i] == INF) {
-            cout << "Vértice " << i << ": INF\n";
+            cout << "Vértice " << i + 1 << ": INF\n";
         } else {
-            cout << "Vértice " << i << ": " << dist[i] << "\n";
+            cout << "Vértice " << i + 1 << ": " << dist[i] << "\n";
         }
     }
 

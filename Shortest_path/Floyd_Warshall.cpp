@@ -43,14 +43,29 @@ void floydWarshall(vector<vector<int>>& graph, int V) {
 
 int main() {
     // Número de vértices
-    int V = 4;
+    int V = 19;
 
     // Matriz de adjacência do grafo
     vector<vector<int>> graph = {
-        {0, 3, INF, 7},
-        {8, 0, 2, INF},
-        {5, INF, 0, 1},
-        {2, INF, INF, 0}
+        {0, 3, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {3, 0, 8, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, 8, 0, 1, 10, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, 1, 0, INF, 9, 7, INF, 15, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, 10, INF, 0, INF, INF, INF, INF, 7, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, 9, INF, 0, 2, 8, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, 7, INF, 2, 0, 7, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, 8, 7, 0, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, 15, INF, INF, INF, INF, 0, 6, 9, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, 7, INF, INF, INF, 6, 0, INF, INF, 4, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, 9, INF, 0, 2, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 2, 0, 4, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, 4, INF, 4, 0, 1, INF, INF, INF, INF, 18},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1, 0, 4, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4, 0, 3, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 3, 0, 1, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1, 0, 2, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 2, 0, 20},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 18, INF, INF, INF, INF, 20, 0}
     };
 
     // Executando o algoritmo de Floyd-Warshall

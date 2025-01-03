@@ -12,8 +12,13 @@ struct Aresta {
 // Função para imprimir a solução
 void imprimirSolucao(vector<int>& dist, int V) {
     cout << "Distância do vértice origem para cada vértice:" << endl;
-    for (int i = 0; i < V; ++i)
-        cout << i << "\t\t" << dist[i] << endl;
+    for (int i = 0; i < V; ++i) {
+        if (dist[i] == INT_MAX) {
+            cout << i + 1 << "\t\tINF" << endl;
+        } else {
+            cout << i + 1 << "\t\t" << dist[i] << endl;
+        }
+    }
 }
 
 // Função que implementa o algoritmo de Bellman-Ford
@@ -28,8 +33,9 @@ void bellmanFord(vector<Aresta>& arestas, int V, int E, int origem) {
             int u = arestas[j].origem;
             int v = arestas[j].destino;
             int peso = arestas[j].peso;
-            if (dist[u] != INT_MAX && dist[u] + peso < dist[v])
+            if (dist[u] != INT_MAX && dist[u] + peso < dist[v]) {
                 dist[v] = dist[u] + peso;
+            }
         }
     }
 
@@ -49,21 +55,26 @@ void bellmanFord(vector<Aresta>& arestas, int V, int E, int origem) {
 }
 
 int main() {
-    int V = 5; // Número de vértices no grafo
-    int E = 8; // Número de arestas no grafo
+    int V = 19; // Número de vértices no grafo
+    vector<Aresta> arestas;
 
-    // Lista de arestas do grafo
-    vector<Aresta> arestas = {
-        {0, 1, -1}, {0, 2, 4},
-        {1, 2, 3}, {1, 3, 2}, {1, 4, 2},
-        {3, 2, 5}, {3, 1, 1},
-        {4, 3, -3}
+    // Adiciona as arestas baseadas na matriz fornecida
+    vector<vector<int>> matriz = {
+        // Copie a matriz aqui
     };
 
-    int origem = 0; // Vértice de origem
+    for (int i = 0; i < V; ++i) {
+        for (int j = 0; j < V; ++j) {
+            if (matriz[i][j] > 0) { // Se houver peso na aresta
+                arestas.push_back({i, j, matriz[i][j]});
+            }
+        }
+    }
+
+    int origem = 0; // Vértice de origem (indexado como 0)
 
     // Chama a função Bellman-Ford
-    bellmanFord(arestas, V, E, origem);
+    bellmanFord(arestas, V, arestas.size(), origem);
 
     return 0;
 }
