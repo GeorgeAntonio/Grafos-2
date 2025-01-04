@@ -1,23 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "MinGW",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/msys64/mingw64/include/c++/12.2.0", // Substitua pela versão correta
-                "C:/msys64/mingw64/include/c++/12.2.0/x86_64-w64-mingw32",
+                "C:/msys64/mingw64/include/c++/13.1.0", // Substitua pela versão encontrada
+                "C:/msys64/mingw64/include/c++/13.1.0/x86_64-w64-mingw32",
                 "C:/msys64/mingw64/include",
-                "C:/msys64/mingw64/x86_64-w64-mingw32/include",
-                "C:/msys64/mingw64/include/c++/12.2.0/tr1"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+                "C:/msys64/mingw64/x86_64-w64-mingw32/include"
+]
+
+            "defines": [],
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe", // Caminho do seu compilador GCC
             "cStandard": "c17",
-            "cppStandard": "gnu++17",
+            "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x64"
         }
     ],

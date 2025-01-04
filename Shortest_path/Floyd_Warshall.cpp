@@ -47,29 +47,29 @@ int main() {
 
     // Matriz de adjacência do grafo
     vector<vector<int>> matriz = {
-        {0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 2, 0, 0, 1, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 9, 7, 0, 0, 15, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {2, 0, 8, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 6, 9, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0},
-        {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 18},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5},
-        {0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        {0, INF, INF, INF, INF, 3, INF, INF, INF, INF, 1, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, 0, INF, INF, INF, INF, INF, 8, INF, INF, INF, 1, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, 0, 2, INF, INF, 1, 10, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, 0, INF, INF, INF, INF, 9, 7, INF, INF, 15, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, 4, 0, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, 2, 9, INF, INF, 0, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {2, INF, 8, INF, INF, 7, 0, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, 0, 7, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+        {INF, INF, 2, INF, INF, INF, INF, INF, 0, INF, INF, INF, INF, 1, INF, INF, INF, INF, INF},
+        {INF, INF, INF, INF, 5, INF, INF, INF, INF, 0, INF, INF, INF, 6, 9, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 0, INF, INF, INF, INF, 2, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4, 0, INF, INF, INF, INF, 1, INF, INF},
+        {INF, 5, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 0, INF, INF, INF, INF, 4, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 0, 1, INF, INF, INF, 18},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 0, INF, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 3, INF, INF, INF, 0, INF, INF, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1, INF, INF, INF, INF, 0, 2, 5},
+        {INF, INF, INF, INF, INF, INF, INF, INF, 2, INF, INF, INF, INF, INF, INF, INF, 20, 0, INF},
+        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 0}
     };
 
     // Executando o algoritmo de Floyd-Warshall
-    floydWarshall(graph, V);
+    floydWarshall(matriz, V);
 
     return 0;
 }
