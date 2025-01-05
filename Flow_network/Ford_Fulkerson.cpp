@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits.h>
-#include <queue>
 #include <vector>
 #include <cstring>
 
@@ -9,38 +8,30 @@ using namespace std;
 // Número de vértices no grafo
 #define V 6
 
-// Função para realizar uma busca em largura (BFS) e encontrar um caminho aumentante
-bool bfs(int rGraph[V][V], int s, int t, int parent[]) {
-    // Cria um array de visitados e marca todos os vértices como não visitados
-    bool visited[V];
-    memset(visited, 0, sizeof(visited));
+// Função para realizar uma busca em profundidade (DFS) e encontrar um caminho aumentante
+bool dfs(int rGraph[V][V], int u, int t, bool visited[], int parent[]) {
+    // Marca o vértice atual como visitado
+    visited[u] = true;
 
-    // Cria uma fila, enfileira o nó de origem e marca-o como visitado
-    queue<int> q;
-    q.push(s);
-    visited[s] = true;
-    parent[s] = -1;
+    // Percorre todos os vértices adjacentes ao vértice atual
+    for (int v = 0; v < V; v++) {
+        if (!visited[v] && rGraph[u][v] > 0) {
+            // Armazena o caminho
+            parent[v] = u;
 
-    // Loop de BFS
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
+            // Se encontramos o destino, retorna verdadeiro
+            if (v == t) {
+                return true;
+            }
 
-        for (int v = 0; v < V; v++) {
-            if (visited[v] == false && rGraph[u][v] > 0) {
-                // Se encontramos um caminho para o vértice destino, retorna verdadeiro
-                if (v == t) {
-                    parent[v] = u;
-                    return true;
-                }
-                q.push(v);
-                parent[v] = u;
-                visited[v] = true;
+            // Continua a busca recursivamente
+            if (dfs(rGraph, v, t, visited, parent)) {
+                return true;
             }
         }
     }
 
-    // Se não encontramos um caminho para o vértice destino, retorna falso
+    // Se não encontramos o destino, retorna falso
     return false;
 }
 
@@ -50,17 +41,26 @@ int fordFulkerson(int graph[V][V], int s, int t) {
 
     // Cria um grafo residual e inicializa o grafo residual com as capacidades do grafo original
     int rGraph[V][V];
-    for (u = 0; u < V; u++)
-        for (v = 0; v < V; v++)
+    for (u = 0; u < V; u++) {
+        for (v = 0; v < V; v++) {
             rGraph[u][v] = graph[u][v];
+        }
+    }
 
     int parent[V];  // Array para armazenar o caminho aumentante
-
     int max_flow = 0;  // Não há fluxo inicialmente
 
     // Aumenta o fluxo enquanto houver um caminho aumentante do vértice origem ao vértice destino
-    while (bfs(rGraph, s, t, parent)) {
-        // Encontra a capacidade residual mínima ao longo do caminho aumentante encontrado pela BFS
+    while (true) {
+        bool visited[V];
+        memset(visited, false, sizeof(visited));
+
+        // Verifica se há um caminho aumentante usando DFS
+        if (!dfs(rGraph, s, t, visited, parent)) {
+            break; // Não há mais caminhos aumentantes
+        }
+
+        // Encontra a capacidade residual mínima ao longo do caminho aumentante encontrado pela DFS
         int path_flow = INT_MAX;
         for (v = t; v != s; v = parent[v]) {
             u = parent[v];
