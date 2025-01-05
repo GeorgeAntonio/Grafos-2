@@ -1,20 +1,22 @@
 #include <iostream>
 #include <vector>
-#include <limits>
+#include <iomanip> // Para formatação da saída
+#include <limits>  // Para std::numeric_limits
 
 using namespace std;
 
 // Definindo um valor infinito para representar a ausência de aresta
-const int INF = numeric_limits<int>::max();
+const int INF = std::numeric_limits<int>::max(); // Correção: uso de std::numeric_limits
 
 // Função para imprimir a matriz de distâncias
 void printMatrix(const vector<vector<int>>& dist, int V) {
+    cout << "Matriz de distâncias mínimas (Floyd-Warshall):" << endl;
     for (int i = 0; i < V; ++i) {
         for (int j = 0; j < V; ++j) {
             if (dist[i][j] == INF)
-                cout << "INF ";
+                cout << setw(4) << "INF"; // Formatação para alinhamento
             else
-                cout << dist[i][j] << " ";
+                cout << setw(4) << dist[i][j];
         }
         cout << endl;
     }
